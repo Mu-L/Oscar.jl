@@ -11,15 +11,15 @@ julia&gt; I = ideal([y^4+ x^3-x^2+x,x^4]);
 
 julia&gt; groebner_walk(I, lex(R))
 Gröbner basis with elements
-  1 -&gt; x + y^12 - y^8 + y^4
-  2 -&gt; y^16
+  1: x + y^12 - y^8 + y^4
+  2: y^16
 with respect to the ordering
   lex([x, y])
 
 julia&gt; groebner_walk(I, lex(R); algorithm=:generic)
 Gröbner basis with elements
-  1 -&gt; y^16
-  2 -&gt; x + y^12 - y^8 + y^4
+  1: y^16
+  2: x + y^12 - y^8 + y^4
 with respect to the ordering
   lex([x, y])
 
@@ -27,15 +27,15 @@ julia&gt; set_verbosity_level(:groebner_walk, 1);
 
 julia&gt; groebner_walk(I, lex(R))
 Results for standard_walk
-Crossed Cones in: 
+Crossed Cones in:
 ZZRingElem[1, 1]
 ZZRingElem[4, 3]
 ZZRingElem[4, 1]
 ZZRingElem[12, 1]
 Cones crossed: 4
 Gröbner basis with elements
-  1 -&gt; x + y^12 - y^8 + y^4
-  2 -&gt; y^16
+  1: x + y^12 - y^8 + y^4
+  2: y^16
 with respect to the ordering
   lex([x, y])
-</code></pre><div class="admonition is-warning"><header class="admonition-header">Experimental</header><div class="admonition-body"><p>This function is part of the experimental code in Oscar. Please read <a href="https://docs.oscar-system.org/v1/Experimental/intro/">here</a> for more details.</p></div></div></div><a class="docs-sourcelink" target="_blank" href="https://github.com/oscar-system/Oscar.jl/blob/f9b517b7e129e97c35b3030de5f37fdfc702c736/experimental/GroebnerWalk/src/common.jl#L2-L62">source</a></section></article></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../DoubleAndHyperComplexes/advice_for_the_programmer/">« Advice for the programmer</a><a class="docs-footer-nextpage" href="../special-ideals/">Special ideals used for benchmarking »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.7.0 on <span class="colophon-date" title="Tuesday 29 October 2024 10:35">Tuesday 29 October 2024</span>. Using Julia version 1.10.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+</code></pre><div class="admonition is-warning"><header class="admonition-header">Experimental</header><div class="admonition-body"><p>This function is part of the experimental code in Oscar. Please read <a href="https://docs.oscar-system.org/v1/Experimental/intro/">here</a> for more details.</p></div></div></div><a class="docs-sourcelink" target="_blank" href="https://github.com/oscar-system/Oscar.jl/blob/84ad20862d4abe9c1d3a36ded3a79c310a5d957e/experimental/GroebnerWalk/src/common.jl#L2-L62">source</a></section></article></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../DoubleAndHyperComplexes/advice_for_the_programmer/">« Advice for the programmer</a><a class="docs-footer-nextpage" href="../special-ideals/">Special ideals used for benchmarking »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.7.0 on <span class="colophon-date" title="Tuesday 29 October 2024 18:20">Tuesday 29 October 2024</span>. Using Julia version 1.10.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
