@@ -67,9 +67,11 @@ julia&gt; sign(ZZ(-1))
 
 julia&gt; divexact(ZZ(6), ZZ(0))
 ERROR: DivideError: integer division error
+[...]
 
 julia&gt; divexact(ZZ(6), ZZ(5))
 ERROR: ArgumentError: Not an exact division
+[...]
 
 julia&gt; divexact(ZZ(6), 2)
 3
@@ -91,11 +93,13 @@ julia&gt; rem(ZZ(4), ZZ(3))
 
 julia&gt; div(ZZ(2), ZZ(0))
 ERROR: DivideError: integer division error
+[...]
 </code></pre><div class="admonition is-info"><header class="admonition-header">Note</header><div class="admonition-body"><p>The rem function does not provide a minimal set of representatives, e.g. <code>rem(-2, 3) = -2</code> but <code>rem(1, 3) = 1</code>.</p></div></div><h2 id="Modular-arithmetic"><a class="docs-heading-anchor" href="#Modular-arithmetic">Modular arithmetic</a><a id="Modular-arithmetic-1"></a><a class="docs-heading-anchor-permalink" href="#Modular-arithmetic" title="Permalink"></a></h2><h3 id="Modular-reduction"><a class="docs-heading-anchor" href="#Modular-reduction">Modular reduction</a><a id="Modular-reduction-1"></a><a class="docs-heading-anchor-permalink" href="#Modular-reduction" title="Permalink"></a></h3><ul><li><code>mod(a::ZZRingElem, b::ZZRingElem) -&gt; ZZRingElem</code> : remainder only</li></ul><p>The <code>mod</code> function computes a remainder <span>$r$</span> such that when <span>$r \neq 0$</span> the sign of <span>$r$</span> is the same as the sign of <span>$b$</span>. Thus, if <span>$b &gt; 0$</span> then <code>mod(a, b)</code> will be in the range <span>$[0, b)$</span>. An exception is raised if the modulus <span>$b$</span> is zero. This is summarised in the following table.</p><table><tr><th style="text-align: right">remainder</th><th style="text-align: right">division</th><th style="text-align: right">sign</th><th style="text-align: right">rounding</th></tr><tr><td style="text-align: right">rem</td><td style="text-align: right">div/divrem</td><td style="text-align: right">same as dividend</td><td style="text-align: right">towards zero</td></tr><tr><td style="text-align: right">mod</td><td style="text-align: right"></td><td style="text-align: right">same as divisor</td><td style="text-align: right">towards <span>$-\infty$</span></td></tr></table><p>There is no function implemented to compute the quotient corresponding to the remainder given by <code>mod</code>.</p><pre><code class="language-julia-repl hljs">julia&gt; mod(ZZ(4), ZZ(3))
 1
 
 julia&gt; mod(ZZ(2), ZZ(0))
 ERROR: DivideError: integer division error
+[...]
 </code></pre><h2 id="integer_divisibility_testing"><a class="docs-heading-anchor" href="#integer_divisibility_testing">Divisibility testing</a><a id="integer_divisibility_testing-1"></a><a class="docs-heading-anchor-permalink" href="#integer_divisibility_testing" title="Permalink"></a></h2><ul><li><code>divides(a::ZZRingElem, b::ZZRingElem) -&gt; (Bool, ZZRingElem)</code></li></ul><p>In OSCAR, we say that <span>$b$</span> divides <span>$a$</span> if there exists <span>$c$</span> in the same ring such that <span>$a = bc$</span>.</p><p>The call <code>divides(a, b)</code> returns a tuple <code>(flag, q)</code> where <code>flag</code> is either <code>true</code> if <code>b</code> divides <code>a</code> in which case <code>q</code> will be a quotient, or <code>flag</code> is <code>false</code> if <code>b</code> does not divide <code>a</code> in which case <code>q</code> will be an integer whose value is not defined.</p><pre><code class="language-julia-repl hljs">julia&gt; divides(ZZ(6), ZZ(3))
 (true, 2)
 
@@ -125,6 +129,7 @@ julia&gt; isqrt(ZZ(5))
 julia&gt; isqrt(ZZ(-3))
 ERROR: DomainError with -3:
 Argument must be non-negative
+[...]
 </code></pre><ul><li><code>isqrtrem(n::ZZRingElem) -&gt; (ZZRingElem, ZZRingElem)</code></li></ul><p>Return the tuple <code>(s, r)</code> such that <span>$s$</span> is equal to <code>isqrt(n)</code> and <span>$n = s^2 + r$</span>.</p><pre><code class="language-julia-repl hljs">julia&gt; isqrtrem(ZZ(16))
 (4, 0)
 
@@ -136,10 +141,12 @@ julia&gt; isqrtrem(ZZ(5))
 julia&gt; root(ZZ(-5), 2)
 ERROR: DomainError with (-5, 2):
 Argument `x` must be positive if exponent `n` is even
+[...]
 
 julia&gt; root(ZZ(12), -2)
 ERROR: DomainError with -2:
-Exponent must be positive</code></pre><h2 id="Conversions"><a class="docs-heading-anchor" href="#Conversions">Conversions</a><a id="Conversions-1"></a><a class="docs-heading-anchor-permalink" href="#Conversions" title="Permalink"></a></h2><ul><li><code>Int(n::ZZRingElem) -&gt; Int</code></li><li><code>BigInt(n::ZZRingElem) -&gt; BigInt</code></li></ul><p>Convert the OSCAR integer to the respective Julia integer.</p><pre><code class="language-julia-repl hljs">julia&gt; n = ZZ(123)
+Exponent must be positive
+[...]</code></pre><h2 id="Conversions"><a class="docs-heading-anchor" href="#Conversions">Conversions</a><a id="Conversions-1"></a><a class="docs-heading-anchor-permalink" href="#Conversions" title="Permalink"></a></h2><ul><li><code>Int(n::ZZRingElem) -&gt; Int</code></li><li><code>BigInt(n::ZZRingElem) -&gt; BigInt</code></li></ul><p>Convert the OSCAR integer to the respective Julia integer.</p><pre><code class="language-julia-repl hljs">julia&gt; n = ZZ(123)
 123
 
 julia&gt; Int(n)
@@ -149,6 +156,7 @@ julia&gt; BigInt(n)
 123
 </code></pre><p>In the case of <code>Int</code>, if the OSCAR integer is too large to fit, an exception is raised.</p><pre><code class="language-julia-repl hljs">julia&gt; Int(ZZ(12348732648732648763274868732687324))
 ERROR: InexactError: convert(Int64, 12348732648732648763274868732687324)
+[...]
 </code></pre><ul><li><code>fits(::Type{Int}, n::ZZRingElem) -&gt; Bool</code></li></ul><p>Return <code>true</code> if the OSCAR integer will fit in an <code>Int</code>.</p><pre><code class="language-julia-repl hljs">julia&gt; fits(Int, ZZ(123))
 true
 
@@ -159,6 +167,7 @@ false
 
 julia&gt; factor(ZZ(0))
 ERROR: ArgumentError: Argument is not non-zero
+[...]
 </code></pre><ul><li><code>unit(F::Fac) -&gt; ZZRingElem</code></li></ul><pre><code class="language-julia-repl hljs">julia&gt; F = factor(ZZ(-12))
 -1 * 2^2 * 3
 
@@ -196,6 +205,7 @@ julia&gt; F[3]
 
 julia&gt; F[ZZ(7)]
 ERROR: 7 is not a factor of -1 * 5 * 2^2 * 3
+[...]
 </code></pre><h2 id="Combinatorial-functions"><a class="docs-heading-anchor" href="#Combinatorial-functions">Combinatorial functions</a><a id="Combinatorial-functions-1"></a><a class="docs-heading-anchor-permalink" href="#Combinatorial-functions" title="Permalink"></a></h2><div class="admonition is-info"><header class="admonition-header">Note</header><div class="admonition-body"><p>The functions in this section that take <code>Int</code> arguments will return an <code>Int</code>, which may overflow or throw an error. Use the <code>ZZRingElem</code> versions if this is not the desired behavior.</p></div></div><h3 id="Factorial"><a class="docs-heading-anchor" href="#Factorial">Factorial</a><a id="Factorial-1"></a><a class="docs-heading-anchor-permalink" href="#Factorial" title="Permalink"></a></h3><ul><li><code>factorial(n::ZZRingElem) -&gt; ZZRingElem</code></li></ul><p>Return the factorial of <span>$n$</span>, i.e. <span>$n!$</span>. An exception is raised if <span>$n &lt; 0$</span>. We define <span>$0! = 1$</span>.</p><ul><li><code>rising_factorial(x::Int, n::Int) -&gt; Int</code></li><li><code>rising_factorial(x::ZZRingElem, n::Int) -&gt; ZZRingElem</code></li><li><code>rising_factorial(x::ZZRingElem, n::ZZRingElem) -&gt; ZZRingElem</code></li></ul><p>Return <span>$x(x + 1)(x + 2)\ldots(x + n - 1)$</span>. An exception is raised if <span>$n &lt; 0$</span>. We define <code>rising_factorial(x, 0)</code> to be <span>$1$</span>.</p><pre><code class="language-julia-repl hljs">julia&gt; factorial(ZZ(30))
 265252859812191058636308480000000
 
@@ -222,4 +232,4 @@ julia&gt; fibonacci(-2)
 806220408
 </code></pre><h3 id="Euler-totient-function"><a class="docs-heading-anchor" href="#Euler-totient-function">Euler totient function</a><a id="Euler-totient-function-1"></a><a class="docs-heading-anchor-permalink" href="#Euler-totient-function" title="Permalink"></a></h3><ul><li><code>euler_phi(n::Int) -&gt; Int</code></li><li><code>euler_phi(n::ZZRingElem) -&gt; ZZRingElem</code></li></ul><p>Return the Euler totient function <span>$\varphi(n)$</span>, i.e. the number of positive integers <span>$1 \leq x \leq n$</span> which are coprime to <span>$n$</span>. Note that <span>$\varphi(1) = 1$</span>. We raise an exception if <span>$n \leq 0$</span>.</p><pre><code class="language-julia-repl hljs">julia&gt; euler_phi(200)
 80
-</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../AbstractAlgebra/ring/">« Ring functionality</a><a class="docs-footer-nextpage" href="../../AbstractAlgebra/polynomial/">Univariate polynomial functionality »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.1 on <span class="colophon-date" title="Saturday 1 March 2025 19:51">Saturday 1 March 2025</span>. Using Julia version 1.10.8.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../AbstractAlgebra/ring/">« Ring functionality</a><a class="docs-footer-nextpage" href="../../AbstractAlgebra/polynomial/">Univariate polynomial functionality »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.1 on <span class="colophon-date" title="Tuesday 4 March 2025 13:40">Tuesday 4 March 2025</span>. Using Julia version 1.10.8.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
